@@ -1,4 +1,5 @@
 #include "Shot.h"
+
 namespace Gra1 {
 	void Shot::CreateShot(System::Windows::Forms::Form^ form) {
 		System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(form->GetType()));
