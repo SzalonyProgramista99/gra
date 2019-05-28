@@ -1,3 +1,4 @@
+#include "Shot.h"
 #pragma once
 
 
@@ -38,6 +39,9 @@ namespace Gra1 {
 	private: System::Windows::Forms::PictureBox^ pictureBox1;
 	private: System::Windows::Forms::Timer^ timer_left;
 	private: System::Windows::Forms::Timer^ timer_right;
+	private: System::Windows::Forms::Timer^ timer_top;
+
+	private: System::Windows::Forms::Timer^ timer_down;
 
 
 	protected:
@@ -64,6 +68,8 @@ namespace Gra1 {
 			this->pictureBox1 = (gcnew System::Windows::Forms::PictureBox());
 			this->timer_left = (gcnew System::Windows::Forms::Timer(this->components));
 			this->timer_right = (gcnew System::Windows::Forms::Timer(this->components));
+			this->timer_top = (gcnew System::Windows::Forms::Timer(this->components));
+			this->timer_down = (gcnew System::Windows::Forms::Timer(this->components));
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
 			this->SuspendLayout();
 			// 
@@ -86,6 +92,14 @@ namespace Gra1 {
 			// timer_right
 			// 
 			this->timer_right->Tick += gcnew System::EventHandler(this, &MyForm::Timer_right_Tick);
+			// 
+			// timer_top
+			// 
+			this->timer_top->Tick += gcnew System::EventHandler(this, &MyForm::Timer_up_Tick);
+			// 
+			// timer_down
+			// 
+			this->timer_down->Tick += gcnew System::EventHandler(this, &MyForm::Timer_down_Tick);
 			// 
 			// MyForm
 			// 
@@ -111,22 +125,35 @@ namespace Gra1 {
 
 	}
 private: System::Void MyForm_KeyDown(System::Object^ sender, System::Windows::Forms::KeyEventArgs^ e) {
-	if (e->KeyCode == VK_LEFT) timer_left->Enabled = true;
-	if (e->KeyCode == VK_RIGHT) timer_right->Enabled = true;
-
+	if (e->KeyCode == System::Windows::Forms::Keys::Left) timer_left->Enabled = true;
+	if (e->KeyCode == System::Windows::Forms::Keys::Right) timer_right->Enabled = true;
+	if (e->KeyCode == System::Windows::Forms::Keys::Up) timer_top->Enabled = true;
+	if (e->KeyCode == System::Windows::Forms::Keys::Down) timer_down->Enabled = true;
+	if (e->KeyCode == System::Windows::Forms::Keys::Space)
+	{
+		Shot shot;
+		shot.CreateShot();
+	}
 }
 private: System::Void MyForm_KeyPress(System::Object^ sender, System::Windows::Forms::KeyPressEventArgs^ e) {
 }
 private: System::Void MyForm_KeyUp(System::Object^ sender, System::Windows::Forms::KeyEventArgs^ e) {
-	if (e->KeyCode == VK_LEFT) timer_left->Enabled = false;
-	if (e->KeyCode == VK_RIGHT) timer_right->Enabled = false;
-
+	if (e->KeyCode == System::Windows::Forms::Keys::Left) timer_left->Enabled = false;
+	if (e->KeyCode == System::Windows::Forms::Keys::Right) timer_right->Enabled = false;
+	if (e->KeyCode == System::Windows::Forms::Keys::Up) timer_top->Enabled = false;
+	if (e->KeyCode == System::Windows::Forms::Keys::Down) timer_down->Enabled = false;
 }
 private: System::Void Timer_left_Tick(System::Object^ sender, System::EventArgs^ e) {
-	pictureBox1->Left -= 5;
+	pictureBox1->Left -= 10;
 }
 private: System::Void Timer_right_Tick(System::Object^ sender, System::EventArgs^ e) {
-	pictureBox1->Left += 5;
+	pictureBox1->Left += 10;
+}
+private: System::Void Timer_up_Tick(System::Object^ sender, System::EventArgs^ e) {
+	pictureBox1->Top -= 10;
+}
+private: System::Void Timer_down_Tick(System::Object^ sender, System::EventArgs^ e) {
+	pictureBox1->Top += 10;
 }
 };
 }
