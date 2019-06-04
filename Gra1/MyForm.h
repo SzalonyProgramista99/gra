@@ -1,6 +1,6 @@
 #include "Shot.h"
 #pragma once
-
+#include "Shot.h"
 
 namespace Gra1 {
 
@@ -124,23 +124,39 @@ namespace Gra1 {
 
 	}
 private: System::Void MyForm_KeyDown(System::Object^ sender, System::Windows::Forms::KeyEventArgs^ e) {
-	if (e->KeyCode == System::Windows::Forms::Keys::Left) timer_left->Enabled = true;
-	if (e->KeyCode == System::Windows::Forms::Keys::Right) timer_right->Enabled = true;
-	if (e->KeyCode == System::Windows::Forms::Keys::Up) timer_top->Enabled = true;
-	if (e->KeyCode == System::Windows::Forms::Keys::Down) timer_down->Enabled = true;
-	if (e->KeyCode == System::Windows::Forms::Keys::Space)
+	if (e->KeyCode == System::Windows::Forms::Keys::Left) { 
+		timer_left->Enabled = true; 
+	}
+	else if (e->KeyCode == System::Windows::Forms::Keys::Right) { 
+		timer_right->Enabled = true; 
+	}
+	else if (e->KeyCode == System::Windows::Forms::Keys::Up) {
+		timer_top->Enabled = true;
+	}
+	else if (e->KeyCode == System::Windows::Forms::Keys::Down) {
+		timer_down->Enabled = true;
+	}
+	else if (e->KeyCode == System::Windows::Forms::Keys::Space)
 	{
-		Shot shot;
-		shot.CreateShot();
+		Shot^ shot = gcnew Shot();
+		shot->CreateShot(this);
 	}
 }
 private: System::Void MyForm_KeyPress(System::Object^ sender, System::Windows::Forms::KeyPressEventArgs^ e) {
 }
 private: System::Void MyForm_KeyUp(System::Object^ sender, System::Windows::Forms::KeyEventArgs^ e) {
-	if (e->KeyCode == System::Windows::Forms::Keys::Left) timer_left->Enabled = false;
-	if (e->KeyCode == System::Windows::Forms::Keys::Right) timer_right->Enabled = false;
-	if (e->KeyCode == System::Windows::Forms::Keys::Up) timer_top->Enabled = false;
-	if (e->KeyCode == System::Windows::Forms::Keys::Down) timer_down->Enabled = false;
+	if (e->KeyCode == System::Windows::Forms::Keys::Left) { 
+		timer_left->Enabled = false; 
+	}
+	else if (e->KeyCode == System::Windows::Forms::Keys::Right) { 
+		timer_right->Enabled = false;
+	}
+	else if (e->KeyCode == System::Windows::Forms::Keys::Up) {
+		timer_top->Enabled = false;
+	}
+	else if (e->KeyCode == System::Windows::Forms::Keys::Down) {
+		timer_down->Enabled = false;
+	}
 }
 private: System::Void Timer_left_Tick(System::Object^ sender, System::EventArgs^ e) {
 	pictureBox1->Left -= 10;
