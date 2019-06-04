@@ -7,5 +7,6 @@ namespace Gra1 {
 	private: System::Windows::Forms::Timer^ timer_shot;
 	public:
 		void CreateShot();
+		void DelateShot();
 	};
 }

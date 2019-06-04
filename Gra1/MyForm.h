@@ -40,7 +40,6 @@ namespace Gra1 {
 	private: System::Windows::Forms::Timer^ timer_left;
 	private: System::Windows::Forms::Timer^ timer_right;
 	private: System::Windows::Forms::Timer^ timer_top;
-
 	private: System::Windows::Forms::Timer^ timer_down;
 
 

@@ -49,5 +49,6 @@ namespace Gra1 {
 
 		this->Controls->Add(this->shot);
 	}
-
+	void Shot::DelateShot() { 
+	}
 	}
